@@ -1,7 +1,6 @@
 var n = document.querySelector('.navbar');
 var w = document.querySelector('.wrapper');
 w.addEventListener('scroll', ()=>{
-  console.log(w.scollTop);
   if (w.scrollTop > 100) {
     n.classList.add('scrolled');
     n.classList.remove('ontop');
