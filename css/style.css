@@ -145,7 +145,7 @@ h1, h2, h3, h4, h5, .head.-sec {
   color: rgb(255, 255, 255);
 }
 
-#bio, #academic, #tech, #projects, #contact {
+#about, #academic, #tech, #projects, #contact {
   display: flex;
   flex-direction: column;
   /*align-items: center;
@@ -167,7 +167,7 @@ h1, h2, h3, h4, h5, .head.-sec {
 /***********************************************************************/
 
 /***********************************************************************/
-/* Bio */
+/* About */
 #profile-sec {
   position: relative;
   margin: 0 auto;
@@ -500,7 +500,7 @@ a#resume {
   /*****************************************/
 
   /*****************************************/
-  /* Bio */
+  /* About */
   #self-desc {
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
