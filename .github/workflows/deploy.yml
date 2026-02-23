@@ -1,0 +1,63 @@
+name: Deploy Portfolio to GitHub Pages
+
+on:
+  push:
+    branches:
+      - v2
+  workflow_dispatch:  # También permite dispararlo manualmente desde la UI de GitHub
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Solo un deploy a la vez; si hay uno en curso, cancela el anterior
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout del repositorio
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Configura GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # ──────────────────────────────────────────────────────
+      # OPCIONAL: Si usas un build step (Vite, Next.js, etc.)
+      # descomenta y adapta este bloque:
+      #
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '20'
+      #     cache: 'npm'
+      #
+      # - name: Install dependencies
+      #   run: npm ci
+      #
+      # - name: Build
+      #   run: npm run build
+      # ──────────────────────────────────────────────────────
+
+      # 3. Sube los archivos del sitio como artefacto de Pages
+      #    Cambia `path: '.'` por `path: './dist'` si usas un build step
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'          # Raíz del repo (HTML puro). Cambiar a './dist' si compilas.
+
+      # 4. Deploy a GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
