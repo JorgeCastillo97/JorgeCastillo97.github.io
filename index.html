@@ -1,114 +1,1235 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="icon" type="image/x-icon" href="./icons/coding.png">
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <title>Jorge Castillo</title>
-</head>
-<body>
-  <div class="wrapper">
-    <nav class="navbar ontop">
-      <div class="toggle">
-        <i class="fa fa-bars menu" aria-hidden="true"></i>
-      </div>
-        <ul>
-          <li><a class="link" href="#about">About</a></li>
-          <!-- <li><a href="#academic">Academic Training</a></li> -->
-          <li><a class="link" href="#tech">Tech</a></li>
-          <li><a class="link" href="#projects">Projects</a></li>
-          <li><a class="link" href="#contact">Contact</a></li>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jorge Castillo · Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #faf9f7;
+        --ink: #1a1a18;
+        --ink-light: #4a4a45;
+        --ink-muted: #9a9990;
+        --rule: #e2e0da;
+        --accent: #2a5c8a;
+        --accent-light: #e8eff6;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 249, 247, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--rule);
+      }
+      .nav-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-logo {
+        font-family: "EB Garamond", serif;
+        font-size: 1.15rem;
+        color: var(--ink);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--ink-muted);
+        text-decoration: none;
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* ── LAYOUT ── */
+      .page {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+      }
+
+      /* ── HERO — nuevo diseño centrado ── */
+      #hero {
+        padding-top: 110px;
+        padding-bottom: 72px;
+        border-bottom: 1px solid var(--rule);
+        text-align: center;
+      }
+
+      /* Foto de perfil */
+      .profile-photo-wrap {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeIn 0.5s 0.1s forwards;
+      }
+
+      .profile-photo {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--rule);
+        /* Placeholder mientras no hay foto real */
+        background: var(--accent-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      /* SVG placeholder de persona — se oculta cuando hay imagen real */
+      .profile-photo-placeholder {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        border: 3px solid var(--rule);
+        background: var(--accent-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .profile-photo-placeholder svg {
+        width: 72px;
+        height: 72px;
+        color: var(--accent);
+      }
+
+      .eyebrow {
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+        opacity: 0;
+        animation: fadeIn 0.5s 0.2s forwards;
+      }
+
+      h1 {
+        font-family: "EB Garamond", serif;
+        font-weight: 400;
+        font-size: clamp(2.6rem, 5vw, 4rem);
+        line-height: 1.12;
+        opacity: 0;
+        animation: fadeIn 0.6s 0.3s forwards;
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--ink-light);
+      }
+
+      .hero-desc {
+        margin: 1.5rem auto 0;
+        font-size: 0.95rem;
+        color: var(--ink-light);
+        line-height: 1.85;
+        max-width: 520px;
+        opacity: 0;
+        animation: fadeIn 0.6s 0.4s forwards;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeIn 0.6s 0.5s forwards;
+      }
+
+      /* Fila de meta-datos debajo del CTA */
+      .hero-meta-row {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin-top: 3rem;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        opacity: 0;
+        animation: fadeIn 0.6s 0.6s forwards;
+      }
+
+      .hero-meta-item {
+        flex: 1;
+        max-width: 200px;
+        padding: 1.25rem 1rem;
+        border-right: 1px solid var(--rule);
+        text-align: center;
+      }
+      .hero-meta-item:last-child {
+        border-right: none;
+      }
+
+      .meta-label {
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-bottom: 0.35rem;
+      }
+      .meta-value {
+        font-size: 0.85rem;
+        color: var(--ink-light);
+      }
+
+      .status-dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #3a9e6e;
+        margin-right: 0.35rem;
+        vertical-align: middle;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+
+      /* ── BUTTONS ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.65rem 1.4rem;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #1e4a70;
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--ink);
+        border: 1px solid var(--rule);
+      }
+      .btn-outline:hover {
+        border-color: var(--ink-muted);
+      }
+
+      /* ── SECTIONS ── */
+      .section {
+        padding: 5rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .section-header {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+        align-items: baseline;
+      }
+      .section-num {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        padding-top: 0.35rem;
+      }
+      h2 {
+        font-family: "EB Garamond", serif;
+        font-weight: 400;
+        font-size: 2rem;
+        letter-spacing: -0.01em;
+      }
+
+      /* ── ABOUT ── */
+      .about-body {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 3rem;
+      }
+      .about-text p {
+        font-size: 0.92rem;
+        color: var(--ink-light);
+        line-height: 1.9;
+        margin-bottom: 1rem;
+      }
+      .about-text p:last-child {
+        margin-bottom: 0;
+      }
+      .about-stats {
+        display: flex;
+        gap: 3rem;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--rule);
+      }
+      .stat-value {
+        font-family: "EB Garamond", serif;
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.72rem;
+        color: var(--ink-muted);
+        margin-top: 0.3rem;
+      }
+
+      /* ── EXPERIENCE ── */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+      }
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 3rem;
+        padding: 2.5rem 0;
+        border-top: 1px solid var(--rule);
+      }
+      .timeline-item:last-child {
+        border-bottom: 1px solid var(--rule);
+      }
+      .tl-date {
+        font-size: 0.78rem;
+        color: var(--ink-muted);
+        line-height: 1.6;
+        padding-top: 0.2rem;
+      }
+      .tl-content h3 {
+        font-family: "EB Garamond", serif;
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+      }
+      .tl-company {
+        font-size: 0.82rem;
+        color: var(--accent);
+        margin-bottom: 0.9rem;
+      }
+      .tl-content p {
+        font-size: 0.87rem;
+        color: var(--ink-light);
+        line-height: 1.85;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1rem;
+      }
+      .tag {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.65rem;
+        background: var(--accent-light);
+        color: var(--accent);
+      }
+
+      /* ── SKILLS ── */
+      .skills-body {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 3rem;
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid var(--rule);
+      }
+      .skill-card {
+        padding: 1.75rem;
+        border-right: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+      }
+      .skill-card:nth-child(3n) {
+        border-right: none;
+      }
+      .skill-card:nth-last-child(-n + 3) {
+        border-bottom: none;
+      }
+      .skill-card h3 {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-bottom: 1rem;
+      }
+      .skill-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+      .skill-list li {
+        font-size: 0.84rem;
+        color: var(--ink-light);
+      }
+
+      /* ── PROJECTS ── */
+      .projects-list {
+        display: flex;
+        flex-direction: column;
+      }
+      .project-item {
+        display: grid;
+        grid-template-columns: 120px 1fr auto;
+        gap: 3rem;
+        padding: 2.5rem 0;
+        border-top: 1px solid var(--rule);
+        align-items: start;
+      }
+      .project-item:last-child {
+        border-bottom: 1px solid var(--rule);
+      }
+      .project-index {
+        font-size: 0.78rem;
+        color: var(--ink-muted);
+        padding-top: 0.2rem;
+      }
+      .project-body h3 {
+        font-family: "EB Garamond", serif;
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+      .project-body p {
+        font-size: 0.87rem;
+        color: var(--ink-light);
+        line-height: 1.85;
+        max-width: 500px;
+      }
+      .project-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-end;
+        padding-top: 0.2rem;
+      }
+      .project-link {
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+      .project-link:hover {
+        color: var(--accent);
+      }
+      .project-link.primary {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* ── CERTIFICATIONS ── */
+      .certs-body {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 3rem;
+      }
+
+      .certs-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: var(--rule);
+        border: 1px solid var(--rule);
+      }
+
+      .cert-card {
+        background: var(--bg);
+        padding: 1.75rem 2rem;
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 1.25rem;
+        align-items: start;
+        transition: background 0.2s;
+        text-decoration: none;
+        color: inherit;
+      }
+      .cert-card:hover {
+        background: var(--accent-light);
+      }
+
+      /* Ícono/logo de la certificación */
+      .cert-badge {
+        width: 48px;
+        height: 48px;
+        border-radius: 6px;
+        border: 1px solid var(--rule);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .cert-badge img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+      }
+      /* Fallback inicial: letras */
+      .cert-badge-initials {
+        font-family: "EB Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--accent);
+      }
+
+      .cert-info {
+      }
+      .cert-name {
+        font-family: "EB Garamond", serif;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.3;
+        margin-bottom: 0.3rem;
+        color: var(--ink);
+      }
+      .cert-issuer {
+        font-size: 0.78rem;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+      .cert-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .cert-date {
+        font-size: 0.72rem;
+        color: var(--ink-muted);
+      }
+      .cert-id {
+        font-size: 0.7rem;
+        color: var(--ink-muted);
+        font-family: "DM Sans", monospace;
+        letter-spacing: 0.02em;
+      }
+      .cert-verify {
+        font-size: 0.7rem;
+        color: var(--accent);
+        text-decoration: none;
+        margin-left: auto;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+      }
+      .cert-verify:hover {
+        opacity: 0.7;
+      }
+
+      /* ── CONTACT ── */
+      .contact-body {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 3rem;
+      }
+      .contact-content p {
+        font-size: 0.9rem;
+        color: var(--ink-light);
+        line-height: 1.85;
+        max-width: 460px;
+        margin-bottom: 2rem;
+      }
+      .contact-channels {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--rule);
+      }
+      .channel-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .channel-name {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+      }
+      .channel-value {
+        font-size: 0.88rem;
+        color: var(--ink-light);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .channel-value:hover {
+        color: var(--accent);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        padding: 2rem 0;
+      }
+      .footer-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      footer p {
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+      }
+      footer a {
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      footer a:hover {
+        color: var(--accent);
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-inner,
+        .page {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+        .hero-meta-row {
+          flex-wrap: wrap;
+        }
+        .hero-meta-item {
+          flex: 1 1 45%;
+          border-bottom: 1px solid var(--rule);
+        }
+        .hero-meta-item:last-child {
+          border-right: none;
+        }
+        .section-header,
+        .about-body,
+        .skills-body,
+        .certs-body,
+        .contact-body {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        .section-num {
+          display: none;
+        }
+        .timeline-item,
+        .project-item {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+        .project-links {
+          flex-direction: row;
+        }
+        .skills-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .certs-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── NAV ── -->
+    <nav>
+      <div class="nav-inner">
+        <div class="nav-logo">Jorge Castillo</div>
+        <ul class="nav-links">
+          <li><a href="#about">About me</a></li>
+          <li><a href="#experience">Job Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <!-- <li><a href="#projects">Proyectos</a></li> -->
+          <li><a href="#certifications">Cerifications</a></li>
+          <li><a href="#contact">Contact me</a></li>
         </ul>
+      </div>
     </nav>
-    <div id="about" class="section">
-      <h3 class="head-sec-3">About</h3>
-      <section id="profile-sec">
-        <img  id="profile-img" src="images/profile.png" alt="Profile">
+
+    <!-- ── HERO ── -->
+    <div class="page">
+      <div id="hero">
+        <!-- Foto de perfil -->
+        <div class="profile-photo-wrap">
+          <div class="profile-photo-placeholder">
+            <img
+              src="./Profile.jpeg"
+              alt="Jorge Castillo"
+              class="profile-photo"
+            />
+          </div>
+        </div>
+
+        <p class="eyebrow">Technology Analyst · Mexico City</p>
+        <h1>Jorge Castilo<br /><em>Software Engineer</em></h1>
+        <p class="hero-desc">
+          Specialized in Developing, Monitoring and Troubleshooting Cloud Native
+          Applications built on Amazon Web Services.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Let's get in touch!</a>
+          <a href="./Resume.pdf" class="btn btn-outline" download
+            >Download my resume</a
+          >
+        </div>
+
+        <!-- Barra de metadata -->
+        <!--
+      <div class="hero-meta-row">
+        <div class="hero-meta-item">
+          <div class="meta-label">Disponibilidad</div>
+          <div class="meta-value"><span class="status-dot"></span>Abierto a oportunidades</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="meta-label">Modalidad</div>
+          <div class="meta-value">Remoto · Híbrido</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="meta-label">Experiencia</div>
+          <div class="meta-value">N+ años</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="meta-label">GitHub</div>
+          <div class="meta-value">
+            <a href="https://github.com/tuusuario" style="color:var(--accent);text-decoration:none;">@tuusuario</a>
+          </div>
+        </div>
+      </div>
+      --></div>
+    </div>
+
+    <!-- ── ABOUT ── -->
+    <div class="page">
+      <section class="section" id="about">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h2>About me</h2>
+        </div>
+        <div class="about-body">
+          <div></div>
+          <div class="about-text reveal">
+            <p>
+              Technology-Skilled Software Engineer with more than 4 years of
+              experience working as part of cross-functional teams conformed of
+              offshore and onshore IT professionals under Agile Frameworks like
+              SCRUM and Kanban. Mainly working for US companies as Java Backend
+              Developer/Support Engineer with AWS cloud services integration.
+              Worked using observability tools and platforms such as DataDog and
+              Dynatrace for production support and troubleshooting activities.
+              Familiar with REST APIs, microservices, Event-Driven applications,
+              the SDLC and CI/CD best practices in the industry.
+            </p>
+            <div class="about-stats">
+              <div>
+                <div class="stat-value">4+</div>
+                <div class="stat-label">YOE</div>
+              </div>
+              <!--
+              <div>
+                <div class="stat-value">XX</div>
+                <div class="stat-label">Proyectos entregados</div>
+              </div>
+              -->
+              <div>
+                <div class="stat-value">International</div>
+                <div class="stat-label">Exposure</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-      <p id="name">Jorge Castillo</p>
-      <p id="self-desc">
-        I'm a tech passionate who is always learning something new and is ready to face any challenge standing in my way. I like working together with many other great people so that we can get the best results by working hard every day.
-      </p>
     </div>
-    <!-- <div id="academic" class="section">
-      <h3 class="head-sec-3">Academic Training</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div> -->
-    <div id="tech" class="section">
-      <h3 class="head-sec-3">Tech</h3>
-      <p class="sk-desc">Languages and Technologies I've worked with:</p>
-      <ul class="sk-list">
-        <li class="sk-item">Java & The Spring Framework</li>
-        <li class="sk-item">Python & Django, Flask, OOP</li>
-        <li class="sk-item">HTML5</li>
-        <li class="sk-item">CSS</li>
-        <li class="sk-item">Javascript & NodeJS, ExpressJS, AngularJS, React JS, VanillaJS, Bootstrap (not present here)</li>
-        <li class="sk-item">C</li>
-        <li class="sk-item">Relational Databases: MySQL, OracleDB</li>
-        <li class="sk-item">No SQL Databases: MongoDB</li>
-        <li class="sk-item">Visual Basic .NET</li>
-        <li class="sk-item">Git, GitHub & GitLab (VCS)</li>
-      </ul>
+
+    <!-- ── EXPERIENCE ── -->
+    <div class="page">
+      <section class="section" id="experience">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2>Experience</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <div class="tl-date">2024<br />Today</div>
+            <div class="tl-content">
+              <h3>Technology Analyst</h3>
+              <div class="tl-company">Infosys · Mexico City, Mexico</div>
+              <p>
+                Currently working as an AWS Production Core Support Engineer for
+                an airline in the United States. Familiar with Unified
+                Observability Platforms such as Datadog, Dynatrace, and Kibana
+                to triage, track and resolve production incidents reported in
+                ServiceNow. Provide support to major and minor releases of new
+                and existing applications and to the entire cloud
+                Infrastructure. Maintenance of SpringBoot-based, event-driven
+                applications migrated to the cloud (SNS, SQS, Amazon MQ, Solace,
+                CloudFormation, ECS Containers, S3 Buckets, KMS, IAM, Secrets
+                Manager) and REST and SOAP APIs in different environments
+                (Dev/Lab, QA, Stage/Pre-production, Production). Scrum and Agile
+                Methodologies training and hands-on experience working as part
+                of a cross-functional team composed of around 30 onshore and
+                offshore members.
+              </p>
+              <div class="tags">
+                <span class="tag">Java</span>
+                <span class="tag">AWS</span
+                ><span class="tag">Event Driven Microservices</span
+                ><span class="tag">Observability</span>
+                <span class="tag">SCRUM</span>
+                <span class="tag">International</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">2023<br />2024</div>
+            <div class="tl-content">
+              <h3>Backend Application Developer</h3>
+              <div class="tl-company">Babel · Mexico City, Mexico</div>
+              <p>
+                Java Backend Developer using the Spring/SpringBoot Framework.
+                Scrum and Agile Methodologies training and hands-on experience.
+                Creation and processing of user logs for audit by using Spring
+                and Oracle DB. Collaboration in frontend UI development using
+                JQuery for user activity tracking.
+              </p>
+              <div class="tags">
+                <span class="tag">Spring</span><span class="tag">Audit</span
+                ><span class="tag">OracleDB</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">2022<br />2023</div>
+            <div class="tl-content">
+              <h3>Computer Systems Analyst</h3>
+              <div class="tl-company">Global Hitss · Mexico City, Mexico</div>
+              <p>
+                Script development for automated testing and report generation
+                using Java, Selenium, TestNG, Junit (TDD, BDD). Manual Testing
+                of web platforms. Contribution to test plans and test matrix.
+                Point Of Contact between cross-functional teams from China and
+                México (issue tracking and rapid resolution of bug fixes,
+                enhancements, and requirement gathering of new funtionalities).
+              </p>
+              <div class="tags">
+                <span class="tag">Java</span>
+                <span class="tag">Selenium</span>
+                <span class="tag">TestNG</span>
+                <span class="tag">Requirement Gathering</span>
+                <span class="tag">International</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-date">2020<br />2022</div>
+            <div class="tl-content">
+              <h3>Application Development Analyst</h3>
+              <div class="tl-company">Accenture · Mexico City, Mexico</div>
+              <p>
+                Full REST API development lifecycle, from the design up through
+                deployment. Design APIs using Swagger/OpenAPI specifications.
+                Development and Testing of RESTful APIs using Java (SpringBoot,
+                Junit, Mockito, Postman) and C.I. tools such as Git and GitLab.
+                Integration of REST services with third-party software such as
+                AWS services (S3). Deployment of APIs using Jenkins. Scrum and
+                Agile Methodologies training and hands-on experience.
+              </p>
+              <div class="tags">
+                <span class="tag">Java</span>
+                <span class="tag">AWS</span>
+                <span class="tag">REST API</span>
+                <span class="tag">Jenkins</span>
+                <span class="tag">SCRUM</span>
+                <span class="tag">International</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div id="projects" class="section">
-      <h3 class="head-sec-3">Projects (just some of them)</h3>
-      <div class="project-grid">
-        <div class="project-item">
-          <h4 class="head-sec-4">MEAN Authentication App</h4>
-          <p class="desc">A web app using the MEAN stack, JWT Tokens, mongoose, express JS and Angular-CLI.</p>
-          <div id="external-link">
-            <a href="https://github.com/JorgeCastillo97/MEAN-Stack-Authentication-App" target="_blank"><img src="icons/link.png" alt="Visit the repository"></a>
+
+    <!-- ── SKILLS ── -->
+    <div class="page">
+      <section class="section" id="skills">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <h2>Technical Skills</h2>
+        </div>
+        <div class="skills-body">
+          <div></div>
+          <div class="skills-grid reveal">
+            <div class="skill-card">
+              <h3>Backend</h3>
+              <ul class="skill-list">
+                <li>Java</li>
+                <li>Python</li>
+                <li>Event Brokers</li>
+                <li>REST & SOAP</li>
+                <li>Microservices</li>
+                <li>Postman</li>
+              </ul>
+            </div>
+            <div class="skill-card">
+              <h3>Cloud & DevOps</h3>
+              <ul class="skill-list">
+                <li>AWS (ECS, S3, Lambda)</li>
+                <li>Docker</li>
+                <li>CloudFormation</li>
+                <li>CI/CD · GitHub Actions, Jenkins, Harness</li>
+                <li>Datadog</li>
+                <li>Dynatrace</li>
+                <li>ELK Stack</li>
+              </ul>
+            </div>
+            <div class="skill-card">
+              <h3>Bases de datos</h3>
+              <ul class="skill-list">
+                <li>MySQL/Aurora DB</li>
+                <li>OracleDB</li>
+                <li>DocumentDB</li>
+                <li>MongoDB</li>
+              </ul>
+            </div>
+            <div class="skill-card">
+              <h3>Frontend</h3>
+              <ul class="skill-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+            <div class="skill-card">
+              <h3>Others</h3>
+              <ul class="skill-list">
+                <li>Scrum</li>
+                <li>ServiceNow</li>
+                <li>Pair Programming</li>
+                <li>Code reviews</li>
+                <li>Jira / Confluence</li>
+              </ul>
+            </div>
+            <div class="skill-card">
+              <h3>Languages</h3>
+              <ul class="skill-list">
+                <li>Spanish — Native speaker</li>
+                <li>English — Advanced</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="project-item">
-          <h4 class="head-sec-4">Solver</h4>
-          <p class="desc">Software capable of solving Linear Programming Problems using the simplex methods.</p>
-          <div id="external-link">
-            <a href="https://github.com/JorgeCastillo97/Metodos-Cuantitativos" target="_blank"><img src="icons/link.png" alt="Visit the repository"></a>
+      </section>
+    </div>
+
+    <!-- ── PROJECTS ── -->
+    <!--
+    <div class="page">
+      <section class="section" id="projects">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2>Proyectos</h2>
+        </div>
+        <div class="projects-list">
+          <div class="project-item reveal">
+            <div class="project-index">01</div>
+            <div class="project-body">
+              <h3>Nombre del Proyecto</h3>
+              <p>
+                Descripción concisa del proyecto. Qué problema resuelve, qué
+                tecnologías usaste y cuál fue el impacto o resultado medible.
+              </p>
+              <div class="tags" style="margin-top: 0.85rem">
+                <span class="tag">React</span><span class="tag">Node.js</span
+                ><span class="tag">AWS</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/tuusuario/proyecto"
+                class="project-link primary"
+                target="_blank"
+                >Ver en GitHub →</a
+              >
+              <a href="https://demo.com" class="project-link" target="_blank"
+                >Demo en vivo →</a
+              >
+            </div>
+          </div>
+
+          <div class="project-item reveal">
+            <div class="project-index">02</div>
+            <div class="project-body">
+              <h3>Segundo Proyecto</h3>
+              <p>
+                Resalta el reto técnico más interesante: escala alcanzada,
+                decisión de arquitectura relevante, o solución a un problema
+                complejo.
+              </p>
+              <div class="tags" style="margin-top: 0.85rem">
+                <span class="tag">Python</span><span class="tag">FastAPI</span
+                ><span class="tag">PostgreSQL</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/tuusuario/proyecto2"
+                class="project-link primary"
+                target="_blank"
+                >Ver en GitHub →</a
+              >
+            </div>
+          </div>
+
+          <div class="project-item reveal">
+            <div class="project-index">03</div>
+            <div class="project-body">
+              <h3>Tercer Proyecto</h3>
+              <p>
+                Alinea tus proyectos con el tipo de rol que buscas. Si es
+                DevOps, muestra infraestructura; si es backend, muestra APIs o
+                sistemas distribuidos.
+              </p>
+              <div class="tags" style="margin-top: 0.85rem">
+                <span class="tag">Go</span><span class="tag">Docker</span
+                ><span class="tag">Kubernetes</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/tuusuario/proyecto3"
+                class="project-link primary"
+                target="_blank"
+                >Ver en GitHub →</a
+              >
+              <a href="https://demo3.com" class="project-link" target="_blank"
+                >Demo en vivo →</a
+              >
+            </div>
           </div>
         </div>
-        <div class="project-item">
-          <h4 class="head-sec-4">Polls</h4>
-          <p class="desc">A web app to create polls using the Django Framework and a little javascript.</p>
-          <div id="external-link">
-            <a href="https://github.com/JorgeCastillo97/Polls" target="_blank"><img src="icons/link.png" alt="Visit the repository"></a>
+      </section>
+    </div>
+    -->
+
+    <!-- ── CERTIFICATIONS ── -->
+    <div class="page">
+      <section class="section" id="certifications">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2>Certiications</h2>
+        </div>
+        <div class="certs-body">
+          <div></div>
+          <div class="certs-grid reveal">
+            <!--
+            INSTRUCCIONES para cada cert-card:
+            · href → link de verificación oficial (Credly, AWS, Google, etc.)
+            · .cert-badge → pon el logo de la entidad emisora como <img src="./logos/aws.png" />
+              Si no tienes logo, deja las iniciales en .cert-badge-initials
+            · cert-id → código/ID de credencial (opcional, bórralo si no aplica)
+          -->
+
+            <a
+              class="cert-card"
+              href="https://www.credly.com/badges/229f61e1-6a32-405e-9024-56a2892f218a/public_url"
+              target="_blank"
+            >
+              <div class="cert-badge">
+                <!--
+                Opción A — con logo:
+                <img src="./logos/aws.png" alt="AWS" />
+              -->
+                <!-- Opción B — iniciales como placeholder: -->
+                <span class="cert-badge-initials">AWS</span>
+              </div>
+              <div class="cert-info">
+                <div class="cert-name">AWS Certified Cloud Practitioner</div>
+                <div class="cert-issuer">Amazon Web Services</div>
+                <div class="cert-meta">
+                  <span class="cert-date">Date Issued: March 2025</span>
+                  <!--<span class="cert-id">ID: ABC-123456</span>-->
+                  <span class="cert-verify">Verify →</span>
+                </div>
+              </div>
+            </a>
+
+            <a
+              class="cert-card"
+              href="https://c46e136a583f7e334124-ac22991740ab4ff17e21daf2ed577041.ssl.cf1.rackcdn.com/Certificate/ScrumFundamentalsCertified-JorgeCastillo-1076629.pdf"
+              target="_blank"
+            >
+              <div class="cert-badge">
+                <span class="cert-badge-initials">SS</span>
+              </div>
+              <div class="cert-info">
+                <div class="cert-name">Scrum Fundamentals Certified</div>
+                <div class="cert-issuer">Scrum Study</div>
+                <div class="cert-meta">
+                  <span class="cert-date">Date Issued: April 2025</span>
+                  <span class="cert-id">ID: 1076629</span>
+                  <span class="cert-verify">Verify →</span>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
-        <div class="project-item">
-          <h4 class="head-sec-4">SNMP Tool Station</h4>
-          <p class="desc">School project in order to implement the FCAPS in a network system made with Python.</p>
-          <div id="external-link">
-            <a href="https://github.com/DiegoEstrada/SNMPToolStation" target="_blank"><img src="icons/link.png" alt="Visit the repository"></a>
+      </section>
+    </div>
+
+    <!-- ── CONTACT ── -->
+    <div class="page">
+      <section class="section" id="contact">
+        <div class="section-header">
+          <span class="section-num">05</span>
+          <h2>Contact</h2>
+        </div>
+        <div class="contact-body">
+          <div></div>
+          <div class="contact-content reveal">
+            <p>
+              If you want to know more about my expertise and overall job
+              experience feel free to send me an email or reach out to me via
+              LinkedIn!
+            </p>
+            <a href="mailto:jorcasjim29@gmail.com" class="btn btn-primary"
+              >Send me an email</a
+            >
+            <div class="contact-channels">
+              <div class="channel-row">
+                <span class="channel-name">Email</span
+                ><a href="mailto:tu@email.com" class="channel-value"
+                  >jorcasjim29@gmail.com</a
+                >
+              </div>
+              <div class="channel-row">
+                <span class="channel-name">LinkedIn</span
+                ><a
+                  href="https://linkedin.com/in/jceek/"
+                  class="channel-value"
+                  target="_blank"
+                  >linkedin.com/in/jceek</a
+                >
+              </div>
+              <!--
+              <div class="channel-row">
+                <span class="channel-name">GitHub</span
+                ><a
+                  href="https://github.com/tuusuario"
+                  class="channel-value"
+                  target="_blank"
+                  >github.com/tuusuario</a
+                >
+              </div>
+              -->
+            </div>
           </div>
         </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <p>© 2026 Jorge Castillo</p>
+        <a href="#hero">Go back ↑</a>
       </div>
-    </div>
-    <div id="contact" class="section">
-      <h3 class="head-sec-3">Contact</h3>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <img src="icons/arroba.png" alt="Email"><p>jorcasjim29@gmail.com</p>
-        </div>
-        <div class="contact-item">
-          <img src="icons/telephone.png" alt="Phone"><p>(+52 1) 5570876339</p>
-        </div>
-        <div class="contact-item">
-          <img src="icons/facebook.png" alt="Facebook"><p>Jorge Castillo</p>
-        </div>
-        <div class="contact-item">
-          <img src="icons/github-logo.png" alt="GitHub"><p>JorgeCastillo97</p>
-        </div>
-      </div>
-      <div id="btn-home">
-        <a href="#about"><img src="icons/arrow-up.png" alt="Back to the top"></a>
-      </div>
-      <div id="icons">Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-    </div>
-  </div>
-  <script src="js/jquery-3.2.1.min.js" charset="utf-8"></script>
-  <script src="js/source.js" charset="utf-8"></script>
-</body>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.08 }
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
 </html>
